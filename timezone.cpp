@@ -1,28 +1,26 @@
 #include "timezone.h"
 
 
-TimeZone::TimeZone(QObject *parent) : QObject(parent) , m_oreFusoOrario(0)
+TimeZone::TimeZone(QObject *parent) : QObject(parent) , m_oreFusoOrario(2)
 {
     QDateTime newDate= QDateTime::currentDateTimeUtc();  // restituisce il time UTC (quello di Greenwitch)
-    emit dateTimeChanged(newDate);
+    QTime time = newDate.time();
+    emit dateTimeChanged(time);
 
     QTimer *timer= new QTimer();
-    timer->start(1000);
+    timer->start(100);
+    timer->setSingleShot(false);
 
    connect(timer, SIGNAL(timeout()), this, SLOT(updateDateTime()));
 }
 
 void TimeZone::updateDateTime()
 {
-    QDateTime newDate= QDateTime::currentDateTimeUtc();
+    QDateTime newDate= QDateTime::currentDateTimeUtc().toOffsetFromUtc(3600*m_oreFusoOrario);
 
-   QTime tm=newDate.time();
+    QTime time = newDate.time();
 
-
-
-   qDebug()<<newDate.toOffsetFromUtc(3600);
-    emit dateTimeChanged(newDate.toOffsetFromUtc(3600));
-
+     emit dateTimeChanged(time);
 
 }
 

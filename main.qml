@@ -41,21 +41,21 @@ Window {
                 width:parent.width-5
                 height: 95
                 text: city
-                onClicked: timeZone.cambioFusoOrario(index)
+                onClicked: timeZone.cambioFusoOrario(fuso)
             }
 
         }
         interactive: false
         model: ListModel{
 
-          ListElement{city:"Roma"}
-          ListElement{city:"Tokyo"}
-          ListElement{city:"Lisbona"}
-          ListElement{city:"Roma"}
-          ListElement{city:"Roma"}
-          ListElement{city:"Roma"}
-          ListElement{city:"Roma"}
-          ListElement{city:"Roma"}
+          ListElement{city:"Roma"; fuso:2}
+          ListElement{city:"Tokyo";fuso: 9}
+          ListElement{city:"Lisbona"; fuso:1}
+          ListElement{city:"Madrid"; fuso:2}
+          ListElement{city:"Buenos Aires";fuso:-3}
+          ListElement{city:"Los Angeles";fuso:-7}
+          ListElement{city:"Shangai";fuso:8}
+          ListElement{city:"Mumbasa";fuso:3}
 
         }
     }
@@ -65,7 +65,8 @@ Window {
       target: timeZone
       onDateTimeChanged: {
 
-          print (dataFusoOrario)
+         text1.text=Qt.formatTime(dataFusoOrario,"hh:mm:ss")
+
 
 
       }

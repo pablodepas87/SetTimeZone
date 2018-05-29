@@ -2,6 +2,9 @@
 #include <QQmlApplicationEngine>
 #include "timezone.h"
 #include <QQmlContext>
+#include <QDateTime>
+
+
 
 int main(int argc, char *argv[])
 {

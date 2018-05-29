@@ -23,7 +23,7 @@ public slots:
 
 signals:
 
-    void dateTimeChanged (QDateTime dataFusoOrario);
+    void dateTimeChanged (QTime dataFusoOrario);
 
 private:
 
